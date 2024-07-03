@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Job } from '../model/job.model';
+import { Observable } from 'rxjs';
+import { Jobdetails } from '../model/jobdetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,6 @@ export class JobsService {
   private favorites: Job[] = [];
   private favoriteJobsKey = 'favoriteJobs';
   constructor(private http:HttpClient) { 
-
     this.favorites = this.getFavoriteJobsFromStorage();
   }
 
@@ -39,5 +40,13 @@ export class JobsService {
   private getFavoriteJobsFromStorage(): Job[] {
     const favoriteJobsJson = localStorage.getItem(this.favoriteJobsKey);
     return favoriteJobsJson ? JSON.parse(favoriteJobsJson) : [];
+  }
+
+  getJobListData(): Observable<Job[]> {
+    return this.http.get<Job[]>('/jobs');
+  }
+
+  getJobDetailsById(jobId: string): Observable<Jobdetails>{
+    return this.http.get<Jobdetails>(`/jobs/${jobId}`);
   }
 }

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Job } from '../../model/job.model';
 import { JobsService } from '../../services/jobs.service';
@@ -14,7 +13,7 @@ import { Router } from '@angular/router';
 export class JobListComponent implements OnInit {
  
 jobs: Job[] = []
-  constructor(private http: HttpClient, 
+  constructor(
     private jobsService:JobsService, 
     private router: Router) { }
 
@@ -22,11 +21,11 @@ jobs: Job[] = []
     this.getJobs();
   }
   getJobs() {
-    this.http.get<Job[]>('/jobs')
-      .subscribe(data => {
-        this.jobs = data;
-      });
+    this.jobsService.getJobListData().subscribe(data => {
+      this.jobs = data;
+    });
   }
+
   toggleFavorite(job: Job) {
     this.jobsService.toggleFavorite(job);
   }

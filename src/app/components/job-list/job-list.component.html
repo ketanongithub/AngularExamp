@@ -18,8 +18,8 @@
                 </div>
                 </div>
               </div>
-              <div class="col-md-2 d-flex justify-content-center align-items-center" >
-                <i class="bi {{ isFavorite(job) ? 'bi-star-fill' : 'bi-star' }} fs-3" (click)="toggleFavorite(job)"></i>
+              <div  class="col-md-2 d-flex justify-content-center align-items-center" >
+                <i id="star-{job.id}" class="bi {{ isFavorite(job) ? 'bi-star-fill' : 'bi-star' }} fs-3" (click)="toggleFavorite(job)"></i>
               </div>
             </div>
           </div>

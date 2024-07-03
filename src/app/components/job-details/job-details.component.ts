@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Jobdetails } from '../../model/jobdetails.model';
 import { MyDateFormatPipe } from '../../pipes/my-date-format.pipe';
+import { JobsService } from '../../services/jobs.service';
 
 @Component({
   selector: 'app-job-details',
@@ -14,19 +14,19 @@ import { MyDateFormatPipe } from '../../pipes/my-date-format.pipe';
 export class JobDetailsComponent implements OnInit {
 
   jobDetails!: Jobdetails;
-  constructor(private http: HttpClient,
-     private route: ActivatedRoute,
+  constructor(private jobsService: JobsService,
+    private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
     const jobId = this.route.snapshot.paramMap.get('jobId');
-    this.getJobsDetails(jobId);
+    this.getJobsDetails(jobId!!);
   }
-  getJobsDetails(jobId: string | null) {
-    this.http.get<Jobdetails>(`/jobs/${jobId}`)
-      .subscribe(data => {
-        this.jobDetails = data;
-      });
+
+  getJobsDetails(jobId: string) {
+    this.jobsService.getJobDetailsById(jobId).subscribe(data => {
+      this.jobDetails = data;
+    });
   }
 
   goBack() {
