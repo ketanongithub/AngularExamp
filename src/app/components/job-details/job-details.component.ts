@@ -26,7 +26,6 @@ export class JobDetailsComponent implements OnInit {
     this.http.get<Jobdetails>(`/jobs/${jobId}`)
       .subscribe(data => {
         this.jobDetails = data;
-        console.log("vvvvvvvvvvvv", this.jobDetails)
       });
   }
 
