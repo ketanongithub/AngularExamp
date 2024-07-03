@@ -1,0 +1,9 @@
+.card-title {
+    cursor: pointer;
+    color: bl;
+    text-decoration: underline;
+  }
+  
+  .card-title:hover {
+    color:blue;
+  } 

@@ -1,0 +1,28 @@
+<!-- <nav>
+    <ul>
+      <li><a routerLink="joblist" routerLinkActive="active">JOBS</a></li>
+      <li><a routerLink="jobdetails" routerLinkActive="active">FAVORITES</a></li>
+    </ul>
+  </nav> -->
+
+  
+
+  <div class="container mt-5 ">
+    <h3> Find Your Job</h3>
+
+    <ul class="nav nav-pills nav-fill mt-5 mb-3">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab === 'joblist'" [routerLink]="['/joblist']">JOBS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab === 'jobdetails'" [routerLink]="['/jobdetails']">FAVORITES</a>
+        </li>
+      </ul>
+      
+      <router-outlet></router-outlet>
+  </div>
+ 
+
+
+
+

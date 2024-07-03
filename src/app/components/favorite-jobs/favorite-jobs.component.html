@@ -1,0 +1,28 @@
+@if (favorites.length > 0) {
+    @for (job of favorites; track $index){
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-2 d-flex justify-content-center align-items-center">
+                    <img [src]="job.companyLogo" class="img-fluid rounded-start w-50" alt="...">
+                  </div>
+              <div class="col-md-10">
+                <div class="card-body">
+                  <h5 class="card-title">{{job.title}}</h5>
+                  <div class="row g-2">
+                  <div class="col">
+                    <div class="p-3">Company:{{job.companyName}}</div>
+                  </div>
+                  <div class="col-8">
+                    <div class="p-3">References: {{job.reference}}</div>
+                  </div> 
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        } 
+  } @else {
+    <div class="card mb-12">
+         No Data available 
+    </div>
+  }

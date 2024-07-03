@@ -1,0 +1,24 @@
+<div class="container">
+    <button type="button" class="btn btn-default btn-sm">
+        <i class="bi bi-house-fill fs-3" (click)="goBack()"></i>
+    </button>
+    <div class="row g-0">
+        <div class="col-md-2 ">
+            <img [src]="jobDetails?.companyLogo" class=" w-50">
+        </div>
+        <div class="col-md-10">
+            <h3 class="card-title">{{jobDetails?.title}}</h3>
+            <div class="col-md-10 pt-5">
+                <span class="badge rounded-pill bg-primary ms-1">{{ jobDetails?.types.join(', ') }}</span>
+                <span class="badge rounded-pill bg-primary ms-1">{{ jobDetails?.industries.join(', ')}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row g-0">
+        <p>Company: {{ jobDetails?.companyName }}</p>
+        <p>Published: {{ jobDetails?.publishDate | myDateFormat }}</p>
+        <p>Location: {{ jobDetails?.location }}</p>
+        <p>Ref: {{ jobDetails?.reference }}</p>
+        <p [innerHTML]="jobDetails?.description"></p>
+    </div>
+</div>
