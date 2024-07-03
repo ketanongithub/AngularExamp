@@ -13,7 +13,7 @@ import { MyDateFormatPipe } from '../../pipes/my-date-format.pipe';
 })
 export class JobDetailsComponent implements OnInit {
 
-  jobDetails: Jobdetails[] = [];
+  jobDetails!: Jobdetails;
   constructor(private http: HttpClient,
      private route: ActivatedRoute,
     private router: Router) { }
@@ -23,9 +23,10 @@ export class JobDetailsComponent implements OnInit {
     this.getJobsDetails(jobId);
   }
   getJobsDetails(jobId: string | null) {
-    this.http.get<Jobdetails[]>(`/jobs/${jobId}`)
+    this.http.get<Jobdetails>(`/jobs/${jobId}`)
       .subscribe(data => {
         this.jobDetails = data;
+        console.log("vvvvvvvvvvvv", this.jobDetails)
       });
   }
 
