@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Jobdetails } from '../../model/jobdetails.model';
 import { JobsService } from '../../services/jobs.service';
 import { CommonModule } from '@angular/common';
+import { Job } from '../../model/job.model';
 
 @Component({
   selector: 'app-job-details',
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class JobDetailsComponent implements OnInit {
 
-  jobDetails!: Jobdetails;
+  jobDetails!: Job;
   constructor(private jobsService: JobsService,
     private route: ActivatedRoute,
     private router: Router) { }

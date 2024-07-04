@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Job } from '../../model/job.model';
 import { JobsService } from '../../services/jobs.service';
 import { Router } from '@angular/router';
+import { DisplayListComponent } from '../../commonwidget/display-list/display-list.component';
 
 @Component({
   selector: 'app-job-list',
   standalone: true,
-  imports: [],
+  imports: [DisplayListComponent],
   templateUrl: './job-list.component.html',
   styleUrl: './job-list.component.css'
 })
@@ -30,11 +31,11 @@ export class JobListComponent implements OnInit {
     this.jobsService.toggleFavorite(job);
   }
 
-  isFavorite(job: Job): boolean {
-    return this.jobsService.isFavorite(job);
-  }
+  // isFavorite(job: Job): boolean {
+  //   return this.jobsService.isFavorite(job);
+  // }
 
-  navigateToJobDetais(jobData: Job) {
-    this.router.navigate(['/joblist', jobData.id]);
-  }
+  // navigateToJobDetais(jobData: Job) {
+  //   this.router.navigate(['/joblist', jobData.id]);
+  // }
 }
