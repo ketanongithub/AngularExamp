@@ -16,7 +16,7 @@
     </div>
     <div class="row g-0">
         <p>Company: {{ jobDetails.companyName }}</p>
-        <p>Published: {{ jobDetails.publishDate | myDateFormat }}</p>
+        <p>Published: {{ jobDetails.publishDate | date: 'dd/MM/yyyy'}}</p>
         <p>Location: {{ jobDetails.location }}</p>
         <p>Ref: {{ jobDetails.reference }}</p>
         <p [innerHTML]="jobDetails.description"></p>
