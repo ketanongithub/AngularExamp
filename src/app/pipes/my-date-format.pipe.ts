@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
+// added pipe to display date format on details page
 @Pipe({
   name: 'myDateFormat',
   standalone: true

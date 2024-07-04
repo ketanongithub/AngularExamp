@@ -35,14 +35,14 @@ export class AppComponent implements OnInit {
   private getActiveTab(url: string): string {
     if (url.includes('/joblist')) {
       return 'joblist';
-    } else if (url.includes('/jobdetails')) {
-      return 'jobdetails';
+    } else if (url.includes('/favjob')) {
+      return 'favjob';
     }
     return '';
   }
 
   private redirectIfInvalid(url: string) {
-    if (!url.includes('/joblist') && !url.includes('/jobdetails')) {
+    if (!url.includes('/joblist') && !url.includes('/favjob')) {
       this.router.navigate(['/joblist']);
     }
   }

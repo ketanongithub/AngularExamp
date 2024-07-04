@@ -1,5 +1,4 @@
-import { DatePipe } from "@angular/common";
-
+// This is details page data base on selected id
 export interface Jobdetails {
     id: number;
     companyName: string;

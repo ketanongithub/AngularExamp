@@ -14,6 +14,7 @@ export class JobsService {
     this.favorites = this.getFavoriteJobsFromStorage();
   }
 
+  //This function to store data in array while click on favorite star icon
   toggleFavorite(job: Job): void {
     const index = this.favorites.findIndex(j => j.id === job.id);
     if (index === -1) {
@@ -21,10 +22,10 @@ export class JobsService {
     } else {
       this.favorites.splice(index, 1);
     }
-
     this.saveFavoriteJobsToStorage();
   }
 
+  // this function to get favorite data which is display on favorite tab
   getFavorites(): Job[] {
     return this.favorites;
   }
@@ -33,19 +34,23 @@ export class JobsService {
     return this.favorites.some(j => j.id === job.id);
   }
 
+  //this is cache (localstorage) which store data in local storage while click on star fav icon
   private saveFavoriteJobsToStorage(): void {
     localStorage.setItem(this.favoriteJobsKey, JSON.stringify(this.favorites));
   }
 
+  //get data from local storage
   private getFavoriteJobsFromStorage(): Job[] {
     const favoriteJobsJson = localStorage.getItem(this.favoriteJobsKey);
     return favoriteJobsJson ? JSON.parse(favoriteJobsJson) : [];
   }
 
+  // This is get job details and displat on jobs tab
   getJobListData(): Observable<Job[]> {
     return this.http.get<Job[]>('/jobs');
   }
 
+  //GET job detail by selected ID
   getJobDetailsById(jobId: string): Observable<Jobdetails>{
     return this.http.get<Jobdetails>(`/jobs/${jobId}`);
   }

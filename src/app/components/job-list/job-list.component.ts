@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class JobListComponent implements OnInit {
  
-jobs: Job[] = []
+  jobs: Job[] = []
   constructor(
     private jobsService:JobsService, 
     private router: Router) { }
