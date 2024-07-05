@@ -1,9 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DisplayListComponent } from '../../commonwidget/display-list/display-list.component';
 import { Job } from '../../model/job.model';
 import { JobsService } from '../../services/jobs.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DisplayListComponent } from '../../commonwidget/display-list/display-list.component';
-import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-job-list',
@@ -12,21 +10,17 @@ import { Subscription } from 'rxjs/internal/Subscription';
   templateUrl: './job-list.component.html',
   styleUrl: './job-list.component.css'
 })
-export class JobListComponent implements OnInit, OnDestroy {
- 
+export class JobListComponent implements OnInit {
+
   jobs: Job[] = [];
-  private subscription!: Subscription;
 
   constructor(
-    private jobsService:JobsService, 
-    private activatedRoute: ActivatedRoute) { }
+    private jobsService: JobsService) { }
 
   ngOnInit() {
-   this.subscription = this.activatedRoute.params.subscribe(params => {
-     this.getJobs();
-     });
+    this.getJobs();
   }
-  
+
   getJobs() {
     this.jobsService.getJobListData().subscribe(data => {
       this.jobs = data;
@@ -35,9 +29,5 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   toggleFavorite(job: Job) {
     this.jobsService.toggleFavorite(job);
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

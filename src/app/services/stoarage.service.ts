@@ -6,9 +6,7 @@ import { Job } from '../model/job.model';
 })
 export class StoarageService {
   private favoriteJobsKey = 'favoriteJobs';
-  constructor() {
-    
-   }
+  constructor() {}
 
    //this is cache (localstorage) which store data in local storage while click on star fav icon
    saveFavoriteJobsToStorage(data:Job[]): void {

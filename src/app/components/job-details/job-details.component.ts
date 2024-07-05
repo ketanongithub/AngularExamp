@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { JobsService } from '../../services/jobs.service';
 import { CommonModule } from '@angular/common';
 import { Job } from '../../model/job.model';
@@ -15,9 +15,8 @@ export class JobDetailsComponent implements OnInit {
 
   @Input() jobId!:string;
   jobDetails!: Job;
-  
+
   constructor(private jobsService: JobsService,
-    private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
@@ -32,6 +31,5 @@ export class JobDetailsComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/jobs']);
-
   }
 }
