@@ -1,51 +1,15 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterOutlet],
+  imports: [RouterOutlet, RouterLink, RouterOutlet, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  activeTab: string = 'joblist';
-  private subscription!: Subscription;
+  constructor() { }
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
-
-  ngOnInit() {
-    this.subscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.activeTab = this.getActiveTab(event.url);
-        this.redirectIfInvalid(event.url);
-      }
-    });
-    // Set the initial active tab and redirect if necessary
-    this.activeTab = this.getActiveTab(this.router.url);
-    this.redirectIfInvalid(this.router.url);
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  private getActiveTab(url: string): string {
-    if (url.includes('/joblist')) {
-      return 'joblist';
-    } else if (url.includes('/favjob')) {
-      return 'favjob';
-    }
-    return '';
-  }
-
-  private redirectIfInvalid(url: string) {
-    if (!url.includes('/joblist') && !url.includes('/favjob')) {
-      this.router.navigate(['/joblist']);
-    }
-  }
-
-  
+  ngOnInit() {}
 }

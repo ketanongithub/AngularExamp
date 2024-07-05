@@ -25,15 +25,19 @@
               </div>
               @if (showList) {
               <div  class="col-md-2 d-flex justify-content-center align-items-center" >
-                <i id="star-{job.id}" class="bi {{ isFavorite(job) ? 'bi-star-fill' : 'bi-star' }} fs-3" (click)="toggleFavorite(job)"></i>
+                <span class="icon-star star-large" id="star-{{job.id}}" [class.active]="isFavorite(job)" (click)="toggleFavorite(job)"></span>
+
+                <!-- <i id="star-{{job.id}}" class="bi {{ isFavorite(job) ? 'bi-star-fill' : 'bi-star' }} fs-3" (click)="toggleFavorite(job)"></i> -->
               </div>
+
+              
             }
             </div>
           </div>
         } 
   } @else {
     <div class="col-md-12 d-flex justify-content-center align-items-center">
-        No Favoririte Selected
+        No Favorite Selected
     </div>
   }
 

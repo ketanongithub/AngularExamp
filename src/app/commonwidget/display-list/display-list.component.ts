@@ -26,7 +26,7 @@ export class DisplayListComponent {
   }
 
   navigateToJobDetais(jobData: Job) {
-    this.router.navigate(['/joblist', jobData.id]);
+    this.router.navigate(['/jobs', jobData.id]);
   }
 
   toggleFavorite(job: Job) {

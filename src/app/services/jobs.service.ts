@@ -2,15 +2,16 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Job } from '../model/job.model';
 import { Observable, catchError, throwError } from 'rxjs';
+import { StoarageService } from './stoarage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobsService {
   private favorites: Job[] = [];
-  private favoriteJobsKey = 'favoriteJobs';
-  constructor(private http:HttpClient) { 
-    this.favorites = this.getFavoriteJobsFromStorage();
+  
+  constructor(private http:HttpClient, private storageservice:StoarageService) { 
+     this.favorites = this.storageservice.getFavoriteJobsFromStorage();
   }
 
   //This function to store data in array while click on favorite star icon
@@ -21,7 +22,7 @@ export class JobsService {
     } else {
       this.favorites.splice(index, 1);
     }
-    this.saveFavoriteJobsToStorage();
+    this.storageservice.saveFavoriteJobsToStorage(this.favorites);
   }
 
   // this function to get favorite data which is display on favorite tab
@@ -31,17 +32,6 @@ export class JobsService {
 
   isFavorite(job: Job): boolean {
     return this.favorites.some(j => j.id === job.id);
-  }
-
-  //this is cache (localstorage) which store data in local storage while click on star fav icon
-  private saveFavoriteJobsToStorage(): void {
-    localStorage.setItem(this.favoriteJobsKey, JSON.stringify(this.favorites));
-  }
-
-  //get data from local storage
-  private getFavoriteJobsFromStorage(): Job[] {
-    const favoriteJobsJson = localStorage.getItem(this.favoriteJobsKey);
-    return favoriteJobsJson ? JSON.parse(favoriteJobsJson) : [];
   }
 
   getJobListData(): Observable<Job[]> {
